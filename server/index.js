@@ -9,7 +9,7 @@ app.use(express.json());
 app.use(cors());
 app.use(body_parser.urlencoded ({extended: false}));
 
-
+app.use("/", require("./src/controller/photoupload.controller"));
 
 
 
