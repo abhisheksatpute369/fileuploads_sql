@@ -2,10 +2,12 @@ const {Photos} = require("../config/db");
 const express = require("express")
 const router = express.Router()
 const multer  = require('multer')
-const upload = multer({ dest: 'uploads/' })
+const upload = require("../middleware/photoupload")
+const path = require("path")
 
 
-router.post("/addphotos",upload.single('p_image'),(req, res)=>{
+
+router.post("/addphotos",upload,(req, res)=>{
     data = {
         p_name: req.body.p_name,
         p_image:req.file.path
