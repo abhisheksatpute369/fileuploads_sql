@@ -7,7 +7,8 @@ const path = require("path")
 
 
 
-router.post("/addphotos",upload,(req, res)=>{
+router.post("/addphotos",upload.single("p_image"),(req, res)=>{
+    console.log(req.body)
     data = {
         p_name: req.body.p_name,
         p_image:req.file.path
@@ -17,6 +18,20 @@ router.post("/addphotos",upload,(req, res)=>{
     }).catch(err => {
         res.send(err);
     })
+})
+
+router.post("/multiple", upload.array("images", 3), (req, res) => {
+    console.log(req.file);
+    res.send("data posted");
+    // data = {
+    //     p_name: req.body.p_name,
+    //     p_image:req.file.path
+    // }
+    // Photos.create(data).then(photos => {
+    //     res.send(photos);
+    // }).catch(err => {
+    //     res.send(err);
+    // })
 })
 
 router.get("/photos", (req, res) =>{

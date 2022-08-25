@@ -7,11 +7,11 @@ const storage = multer.diskStorage({
       cb(null, './uploads')
     },
     filename: function (req, file, cb) {
-      const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
+      const uniqueSuffix = "adpl-"+Date.now()
       cb(null, file.fieldname + '-' + uniqueSuffix)
     }
   })
   
-  const upload = multer({ storage: storage }).single("p_image")
+  const upload = multer({ storage: storage })
 
   module.exports = upload;
